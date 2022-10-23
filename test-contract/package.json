@@ -1,0 +1,20 @@
+{
+  "name": "test-sign-test",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@checkerchain/elrond-merkle-tree-generator": "^1.0.2",
+    "@elrondnetwork/erdjs": "^11.0.0",
+    "@elrondnetwork/erdjs-network-providers": "^1.1.0",
+    "@elrondnetwork/erdjs-walletcore": "^2.1.0",
+    "dotenv": "^16.0.2",
+    "erc4973": "^0.4.0"
+  }
+}
