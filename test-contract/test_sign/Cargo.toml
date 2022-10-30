@@ -1,5 +1,5 @@
 [package]
-name = "test-sign"
+name = "test_sign"
 version = "0.0.2"
 authors = [ "",]
 edition = "2018"

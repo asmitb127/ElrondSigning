@@ -1,12 +1,8 @@
 PEM_FILE="../wallet/wallet-owner.pem"
-test_sign_CONTRACT="../output/test-sign.wasm"
+test_sign_CONTRACT="../output/test_sign.wasm"
 
 PROXY_ARGUMENT="--proxy=https://devnet-api.elrond.com"
 CHAIN_ARGUMENT="--chain=D"
-
-build_test_sign() {
-    (set -x; erdpy --verbose contract build "$test_sign_CONTRACT")
-}
 
 deploy_test_sign() {
 
@@ -15,7 +11,7 @@ deploy_test_sign() {
         --pem="$PEM_FILE" \
         $PROXY_ARGUMENT $CHAIN_ARGUMENT \
         --outfile="$OUTFILE" --recall-nonce --gas-limit=60000000 \
-        --arguments --send \
+        --send \
         || return)
 
     local RESULT_ADDRESS=$(erdpy data parse --file="$OUTFILE" --expression="data['emitted_tx']['address']")
@@ -35,11 +31,11 @@ upgrade_test_sign() {
     --pem="$PEM_FILE" \
     $PROXY_ARGUMENT $CHAIN_ARGUMENT \
     --outfile="$OUTFILE" --recall-nonce --gas-limit=60000000 \
-    --arguments --send \
+    --send \
     --send \
     || return)
 }
 
-upgrade_test_sign
+# upgrade_test_sign
 
-# deploy_test_sign
+deploy_test_sign

@@ -7,7 +7,10 @@ const SIGNATURE_LENGTH: usize = 64;
 
 #[elrond_wasm::contract]
 pub trait TestSign {
-
+    #[init]
+    fn init(
+        &self
+    ) { }
     //test function 
     #[endpoint]
     fn test_agreement(

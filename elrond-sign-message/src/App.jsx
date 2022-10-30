@@ -8,30 +8,31 @@ import "./App.css";
 const provider = ExtensionProvider.getInstance();
 
 function App() {
-  const [active, setActive] = useState("");
-  const [passive, setPassive] = useState("");
+  // const [active, setActive] = useState("");
+  // const [passive, setPassive] = useState("");
   const [tokenId, setTokenId] = useState("");
   const [wallet, setWallet] = useState("");
   const [signature, setSignature] = useState("");
 
   const signMessage = async () => {
-    if (active === "" || passive === "" || tokenId === "") {
-      alert("Please fill all the fields");
-      return;
-    }
-    const message = Buffer.from(`${active}${passive}${tokenId}`);
+    // if (active === "" || passive === "" || tokenId === "") {
+    //   alert("Please fill all the fields");
+    //   return;
+    // }
+    // const message = Buffer.from(`${active}${passive}${tokenId}`);
+    const message = Buffer.from(tokenId);
     console.log("message", message.toString("hex"));
 
-    const hash = Buffer.from(keccak256(message).replace("0x", ""), 'hex');
+    const hash = Buffer.from(keccak256(message).replace("0x", ""), "hex");
     console.log("hash", hash.toString("hex"));
 
     const signableMessage = new SignableMessage({
-      message: hash,
+      message: hash.toString("hex"),
     });
 
     const signedMessage = await provider.signMessage(signableMessage);
     console.log("signedMessage", signedMessage);
-    
+
     setSignature(signedMessage.signature.value);
   };
 
@@ -59,21 +60,9 @@ function App() {
       </button>
       <input
         type="text"
-        value={active}
-        onChange={(e) => setActive(e.target.value)}
-        placeholder="Active"
-      />
-      <input
-        type="text"
-        value={passive}
-        onChange={(e) => setPassive(e.target.value)}
-        placeholder="Passive"
-      />
-      <input
-        type="text"
         value={tokenId}
         onChange={(e) => setTokenId(e.target.value)}
-        placeholder="token_id"
+        placeholder="message"
       />
       <button onClick={signMessage} disabled={!wallet}>
         Sign message
