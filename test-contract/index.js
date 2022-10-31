@@ -85,9 +85,9 @@ const testAgreement = async (contract, signer, sender, data, signature) => {
 
 const doTestAgreement = async () => {
   const data =
-    "1c8aff950685c2ed4bc3174f3472287b56d9517b9c948127319a09a7a36deac8";
+    "999194090cc45ebbb30c1d41c27ba10e4d7335d052b17fbc334a2a21736c535a";
   const signature =
-    "e0ab766c2bcb63b65cf86b107caae35cfdd5ece0af5cdaf28e3b3e0e2905a7bef3cafff36eb62200ae29c4d5161f427ba438923968c9c513d7de2f31b9520d00";
+    "b276e3346cdafb58159eacd091b3c5dae270433867d5174deb261ae65bad18c0e79415e15a622c3eaba84fd3cfcc47d489e081877380f10da9494b8b83ea7b0c";
   const caller =
     "erd1cgcvwt6sjsdrd5ug6kmafnk6t86mk9vdgxac7tp8lhazxdsesqyqwtqlvn";
   await testAgreement(

@@ -15,26 +15,20 @@ function App() {
   const [signature, setSignature] = useState("");
 
   const signMessage = async () => {
-    // if (active === "" || passive === "" || tokenId === "") {
-    //   alert("Please fill all the fields");
-    //   return;
-    // }
-    // const message = Buffer.from(`${active}${passive}${tokenId}`);
+    //get message
     const message = Buffer.from(tokenId);
-    // console.log("message", message.toString("hex"));
 
-    // const hash = Buffer.from(keccak256(message).replace("0x", ""), "hex");
-    // console.log("hash", hash.toString("hex"));
-
+    //signable Message for signature
     const signableMessage = new SignableMessage({
       message: message,
     });
+
+    //serializedMessage for sending to smart contract
     const serializedMessage = signableMessage.serializeForSigning();
-    console.log(serializedMessage);
-    const signedMessage = await provider.signMessage(new SignableMessage({
-      message: serializedMessage,
-    }));
-    console.log("signedMessage", signedMessage);
+    console.log(serializedMessage.toString("hex"));
+
+    //sign message
+    const signedMessage = await provider.signMessage(signableMessage);
     setSignature(signedMessage.signature.value);
   };
 
