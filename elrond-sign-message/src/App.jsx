@@ -21,18 +21,20 @@ function App() {
     // }
     // const message = Buffer.from(`${active}${passive}${tokenId}`);
     const message = Buffer.from(tokenId);
-    console.log("message", message.toString("hex"));
+    // console.log("message", message.toString("hex"));
 
-    const hash = Buffer.from(keccak256(message).replace("0x", ""), "hex");
-    console.log("hash", hash.toString("hex"));
+    // const hash = Buffer.from(keccak256(message).replace("0x", ""), "hex");
+    // console.log("hash", hash.toString("hex"));
 
     const signableMessage = new SignableMessage({
-      message: hash.toString("hex"),
+      message: message,
     });
-
-    const signedMessage = await provider.signMessage(signableMessage);
+    const serializedMessage = signableMessage.serializeForSigning();
+    console.log(serializedMessage);
+    const signedMessage = await provider.signMessage(new SignableMessage({
+      message: serializedMessage,
+    }));
     console.log("signedMessage", signedMessage);
-
     setSignature(signedMessage.signature.value);
   };
 
