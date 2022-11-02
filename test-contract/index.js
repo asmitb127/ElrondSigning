@@ -67,7 +67,7 @@ const testAgreement = async (contract, signer, sender, data, signature) => {
     func: new ContractFunction("test_agreement"),
     gasLimit: 9063500,
     args: [
-      new BytesValue(data),
+      // new BytesValue(data),
       new ArrayVec(
         new ArrayVecType(64, new U8Type()),
         formatHexToU8(signature)
@@ -87,7 +87,8 @@ const doTestAgreement = async () => {
   const data =
     "999194090cc45ebbb30c1d41c27ba10e4d7335d052b17fbc334a2a21736c535a";
   const signature =
-    "b276e3346cdafb58159eacd091b3c5dae270433867d5174deb261ae65bad18c0e79415e15a622c3eaba84fd3cfcc47d489e081877380f10da9494b8b83ea7b0c";
+    "6eb5574046dcd981f00abf1c0838b48f0efb9e03eb0ff64c3ae138f1d05f5b039b7ade7838ef7d3f246447816c454c0617e33438d951605136113ac645968d05";
+
   const caller =
     "erd1cgcvwt6sjsdrd5ug6kmafnk6t86mk9vdgxac7tp8lhazxdsesqyqwtqlvn";
   await testAgreement(

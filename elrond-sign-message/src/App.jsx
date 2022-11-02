@@ -1,7 +1,11 @@
 import { useState } from "react";
 import { SignableMessage } from "@elrondnetwork/erdjs";
 import { ExtensionProvider } from "@elrondnetwork/erdjs-extension-provider";
+import { Address } from "@elrondnetwork/erdjs";
+
+// import keccak256 from "keccak256";
 import { keccak256 } from "@ethersproject/keccak256";
+// const keccak256 = require("keccak256");
 
 import "./App.css";
 
@@ -14,10 +18,17 @@ function App() {
   const [wallet, setWallet] = useState("");
   const [signature, setSignature] = useState("");
 
+  const numberToHex = (el) => {
+    const h = Number(el).toString(16);
+    return h.length % 2 === 0 ? h : `0${h}`;
+  };
+
   const signMessage = async () => {
     //get message
-    const message = Buffer.from(tokenId);
-
+    // const message = Buffer.from(tokenId, "hex");
+    const message = Buffer.from(new Address(tokenId).valueHex, "hex");
+    // const message = Buffer.from(numberToHex(tokenId), "hex");
+    console.log(message.toString("hex"));
     //signable Message for signature
     const signableMessage = new SignableMessage({
       message: message,
